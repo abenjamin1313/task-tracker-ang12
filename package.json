@@ -1,5 +1,5 @@
 {
-  "name": "crash-course",
+  "name": "task-tracker",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
