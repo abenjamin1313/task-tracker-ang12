@@ -25,16 +25,16 @@
       "reminder": true
     },
     {
-        "id": 5,
-        "text": "Break for PIzza and watch show with wife.",
-        "day": "May 23erd at 5:00pm",
-        "reminder": true
-      },
-    {
-      "id": 6,
-      "text": "1. Finish Tracker. 2. Create GitHub Repo. 3. Write email.",
-      "day": "May 23erd at 7:00pm",
+      "id": 5,
+      "text": "Break for PIzza and watch show with wife.",
+      "day": "May 23erd at 5:00pm",
       "reminder": true
+    },
+    {
+      "text": "Finish Angular Task Track",
+      "day": "05-23-2021 8:30 P.M. EST",
+      "reminder": true,
+      "id": 6
     }
   ]
 }

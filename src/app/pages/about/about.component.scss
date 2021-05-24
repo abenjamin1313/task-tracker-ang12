@@ -1,0 +1,186 @@
+$colors: (
+    primary: #337ab7,
+    primary-light: lighten(#337ab7, 40%),
+    primary-dark: darken(#337ab7, 40%),
+    success: #f0ad4e,
+    danger: #d9534f,
+    default: #ffffff,
+    high-blue: #45aaf2
+);
+@function color($color-name) {
+    @return map-get($colors, $color-name)
+}
+$border-colors: (
+    primary: #2e6da4,
+    success: #4cae4c,
+    danger: #d43f3a
+);
+@function border-color($color-name) {
+    @return map-get($border-colors, $color-name)
+}
+
+$a-tags: 'a, a:active, a:hover, a:visited';
+$a-tags-hover: 'a:active, a:hover';
+
+#{$a-tags} {
+    text-transform: uppercase;
+    color: white;
+    text-decoration: none;
+  }
+  #{$a-tags-hover} {
+    color: black;
+  }
+
+
+/* Links Mixin */
+@mixin links ($link, $visited, $hover, $active) {
+    & {
+        color: $link;
+        &:visited {
+            color: $visited;
+        }
+        &:hover {
+            color: $hover;
+        }
+        &:active, &:focus {
+            color: $active;
+        }
+    }
+}
+
+$padding: 15px;
+$borders: 15px;
+$padding-zero: 0;
+$margin-zero: 0;
+
+$desktop: 840px;
+
+@mixin desktop {
+    @media (min-width: #{$desktop}) {
+        @content;
+    }
+}
+
+body, html {
+    height: 100%;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;  
+
+    #bg {
+        clip-path: polygon(100% 0, 100% 69%, 25% 100%, 0 100%, 0 0);
+        /* Used  https://bennettfeely.com/clippy/ to get clip-path */
+        background-color: color(primary);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: -1;
+
+        @include desktop {
+            clip-path: polygon(0 0, 75% 0, 55% 100%, 0% 100%);
+        }
+    }
+
+    header a {
+        color: color(default);
+        text-decoration: none;
+        padding: $padding;
+        display: block;
+        text-transform: uppercase;
+    }
+}
+
+main {
+
+    @include desktop {
+        display: grid;
+        grid-template-columns: 50% auto;
+        grid-template-areas: "primary card"; 
+    }
+
+    section#card {
+        background: color(high-blue);
+        padding: 20px;
+        margin: 1em auto;
+        border-radius: $borders;
+        box-shadow: 0 10px 30px rgba(0,0,0, .2);
+        width: 80%;
+
+        @include desktop {
+            grid-area: card;
+            height: fit-content;
+            align-self: center;
+            margin: 1em;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: $margin-zero;
+            padding: $padding-zero;
+
+            li {
+                margin-bottom: 10px;
+
+                span {
+                    position: absolute;
+                    width: 30px;
+                    height: 30px;
+                    background-color: color(default);
+                    border-radius: 50%;
+                    margin-right: 10px;
+                }
+
+                strong {
+                    display: inline-block;
+                    margin-left: max(40px);
+                    margin-top: 10px;
+                }
+            }
+        }
+    }
+
+    section#primary {
+        color: color(default);
+        padding: $padding;
+        text-align: center;
+
+        @include desktop {
+            grid-area: primary;
+            text-align: left;
+            margin: 4em 0 0 4em;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-top: 10px;
+            text-transform: uppercase;
+
+            @include desktop {
+                width: 30%;
+                font-size: 4em;
+                line-height: .9em;
+            }
+        }
+
+        p {
+            font-size: 1.4em;
+        }
+
+        a {
+            border-radius: $borders;
+            font-weight: bold;
+            background-color: color(success);
+            display: block;
+            text-align: center;
+            margin: 50px auto 0 auto;
+            padding: $padding;
+
+            @include desktop {
+                display: inline-block;
+                padding: $padding $padding * 4;
+            }
+        }
+    }
+}
